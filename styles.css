@@ -1,0 +1,271 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0d1117;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden; 
+}
+
+header {
+  margin: 20px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00d1ff;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 80%;
+}
+
+.hover-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+  max-width: 1200px;
+}
+
+.hover-button {
+  width: 200px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1f2937;
+  color: #fff;
+  border: 2px solid #00d1ff;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+
+.wobble-vertical:hover {
+  animation: wobble 0.5s ease-in-out 2;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+}
+
+.shutter-out-horizontal {
+  position: relative;
+}
+
+.shutter-out-horizontal:hover::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 209, 255, 0.7);
+  z-index: 9999;
+  animation: screen-shutter 0.6s linear forwards;
+}
+
+@keyframes screen-shutter {
+  0% {
+      clip-path: inset(0 50% 0 50%);
+  }
+  50% {
+      clip-path: inset(0 0 0 0);
+  }
+  100% {
+      clip-path: inset(0 50% 0 50%);
+      opacity: 0;
+  }
+}
+
+
+
+.float-shadow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.7);
+}
+
+
+
+.glow:hover {
+  box-shadow: 0 0 15px #00d1ff, 0 0 30px #00d1ff;
+}
+
+
+.buzz:hover {
+  animation: buzz 0.2s linear 3;
+}
+
+@keyframes buzz {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+
+
+.magnet {
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.magnet:hover {
+  transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+}
+
+
+
+.double-sided {
+  perspective: 1000px;
+}
+
+.card-front, .card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.double-sided:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.double-sided:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+
+.liquid-effect {
+  position: relative;
+  background: linear-gradient(90deg, #00d1ff, #0011ff, #ff00ff);
+  background-size: 300%;
+  transition: background-position 0.5s ease;
+}
+.liquid-effect:hover {
+  background-position: right center;
+}
+
+.liquid-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(10px);
+  transform: translateX(-100%);
+  animation: liquid-wave 1s infinite linear;
+}
+
+.liquid-effect:hover::before {
+  transform: translateX(100%);
+}
+
+@keyframes liquid-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+.fire-effect {
+  position: relative;
+  background: linear-gradient(90deg, #ff4500, #ff8c00);
+  color: #fff;
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.fire-effect:hover {
+  box-shadow: 0 0 20px #ff4500, 0 0 50px #ff8c00;
+}
+
+.fire-effect:hover .fire-emoji {
+  position: absolute;
+  animation: fly-up 4s ease-out infinite;
+  font-size: 1.5rem;
+  color: #ff8c00;
+}
+
+.fire-effect:hover::before {
+  content: "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  animation: tons-of-fire 10s ease-out infinite;
+}
+
+@keyframes tons-of-fire {
+  0% {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+  }
+  100% {
+      transform: translateX(-50%) translateY(-100vh);
+      opacity: 0;
+  }
+}
+
+@keyframes fly-up {
+  0% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+  }
+}  
+
+.expand {
+  transition: all 0.3s ease;
+}
+
+.expand:hover {
+  width: 250px;
+  height: 80px;
+  border-radius: 12px;
+}
